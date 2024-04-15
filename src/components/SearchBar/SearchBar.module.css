@@ -1,0 +1,29 @@
+header {
+    width: 100vw;
+    height: 60px;
+    background: #3747ac;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0; 
+}
+
+.form {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 12px;
+}
+
+.input {
+    width: 500px;
+    height: 36px;
+    /* background: white; */
+    border-style: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
