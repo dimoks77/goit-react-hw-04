@@ -52,13 +52,12 @@ export const App = () => {
     fetchData();
   }, [query, page]);
   
-
   return (
     <>
       <SearchBox onSearch={searchPhotos} />
       {/* {loading && <Loader />} */}
       {/* {error && <Loader error={error.message} />} */}
-      <ImageGallery photos={photos} />
+      {photos.length > 0 && <ImageGallery photos={photos} /> }
       {photos.length > 0 && <LoadMoreBtn loadMore={loadMore} />}
     </>
   );
