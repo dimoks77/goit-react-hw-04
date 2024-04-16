@@ -1,28 +1,32 @@
-import css from './SearchBar.module.css';
+import css from "./SearchBar.module.css";
 
-export const SearchBox = ({onSearch}) => {
-    const handleSubmit = e => {
-        e.preventDefault();
-        
-        if (e.target.elements.query.value.trim() === '') {
-            console.log('Empty string!');
-            return;
-        }
+export const SearchBox = ({ onSearch }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        onSearch(e.target.elements.query.value);
-        e.target.reset();
+    if (e.target.elements.query.value.trim() === "") {
+      console.log("Empty string!");
+      return;
     }
 
-    return (
-<header className={css.header}>
-  <form onSubmit={handleSubmit} className={css.form}>
-    <input className={css.input} name="query"
-      type="text" autoComplete="off" autoFocus placeholder="Search images and photos"
-    />
-    <button type="submit" className={css.btn}>Search</button>
-  </form>
-</header>
-    );
+    onSearch(e.target.elements.query.value);
+    e.target.reset();
   };
-  
-  export default SearchBox;
+
+  return (
+    <header className={css.header}>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <input
+          className={css.input}
+          name="query"
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+        />
+      </form>
+    </header>
+  );
+};
+
+export default SearchBox;

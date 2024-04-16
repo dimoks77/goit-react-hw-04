@@ -21,9 +21,9 @@ header {
 .input {
     width: 500px;
     height: 36px;
-    /* background: white; */
     border-style: none;
     align-items: center;
     justify-content: center;
     display: flex;
 }
+

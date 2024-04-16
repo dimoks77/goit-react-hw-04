@@ -1,9 +1,10 @@
 import css from './LoadMoreBtn.module.css'
 
-export const LoadMoreBtn = () => {
+export const LoadMoreBtn = ( {loadMore}) => {
+    
     return (
         <footer>
-            <button className={css.btn} type="submit">Load More</button>
+            <button onClick={loadMore} className={css.btn} type="submit">Load More</button>
         </footer>
        
     );

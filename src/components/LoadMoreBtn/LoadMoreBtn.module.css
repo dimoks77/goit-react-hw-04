@@ -2,6 +2,8 @@ footer {
     display: flex;
     justify-content: center;
     width: 100%;   
+    margin-top: 40px;
+    margin-bottom: 60px;
 }
 
 .btn {
@@ -12,5 +14,6 @@ footer {
     height: 40px;
     text-align: center;
     border-radius: 0;
-    border-color: gray;
+    border-color: black;
+    background: white;
 }
