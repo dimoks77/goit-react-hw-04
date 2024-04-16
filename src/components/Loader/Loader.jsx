@@ -1,15 +1,17 @@
 import { ProgressBar } from "react-loader-spinner";
+import css from './Loader.module.css'
 
 export const Loader = () => {
   return (
     <ProgressBar
       visible={true}
-      height="300"
-      width="80"
-      color="#4fa94d"
+      height="200"
+      width="100"
+      color="#3747ac"
+      borderColor="#3747ac"
       ariaLabel="progress-bar-loading"
       wrapperStyle={{}}
-      wrapperClass=""
+      wrapperClass={css.loader}
     />
   );
 };

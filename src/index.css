@@ -23,10 +23,10 @@ a:hover {
 }
 
 body {
-  margin: 20px;
+  /* margin: 20px; */
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 h1 {
