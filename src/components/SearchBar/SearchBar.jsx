@@ -23,7 +23,7 @@ export const SearchBox = ({ onSearch }) => {
                         autoFocus
                         type="text"
                         name="query"
-                        placeholder=""
+                        placeholder="search images with photos"
                     />
                     <button type="submit" className={css.btn}>
                         <IoIosSearch className={css.icon} />

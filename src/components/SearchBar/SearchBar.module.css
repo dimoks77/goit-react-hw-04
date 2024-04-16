@@ -33,8 +33,11 @@ header {
     padding-left: 36px;
     font-size: 16px;
     font-weight: 600;
-
 }
+::placeholder {
+    color: rgba(54, 54, 54, 0.5);
+    font-weight: normal; 
+  }
 
 .icon {
     visibility:visible;
