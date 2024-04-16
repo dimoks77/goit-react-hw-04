@@ -1,42 +1,37 @@
-import ImageGallery from "./ImageGallery/ImageGallery";
-import { LoadMoreBtn } from "./LoadMoreBtn/LoadMoreBtn";
-import { SearchBox } from "./SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ImageGallery } from "./ImageGallery/ImageGallery";
+import { LoadMoreBtn } from "./LoadMoreBtn/LoadMoreBtn";
+import { SearchBox } from "./SearchBar/SearchBar";
+import { Loader } from './Loader/Loader';
 
 export const App = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [photos, setPhotos] = useState({
-    items: [],
-    loading: false,
-    error: false,
-  });
-
+  const [photos, setPhotos] = useState([]);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  
   const searchPhotos = async (newQuery) => {
-    setQuery(newQuery); // установка нового поиска
-    setPage(1); // ресет формы
-    setPhotos({
-      items: [],
-      loading: false,
-      error: false,
-    });
+    setQuery(newQuery); 
+    setPage(1); 
+    setLoading(false); 
+    setError("");
+    setPhotos([]); 
   };
 
   const loadMore = () => {
-    console.log("loadMore", page);
     setPage(page + 1);
   };
 
   useEffect(() => {
-    // useEffect не может быть ассинхронным. Поэтому внутри создается асинхронная функция
     if (query === "") {
       return;
     }
   
     async function fetchData() {
       try {
-        setPhotos((prevPhotos) => ({ ...prevPhotos, loading: true, error: false }));
+        setLoading(true);
         const response = await axios.get(`https://api.unsplash.com/photos/`, {
           params: {
             client_id: "4Ha1lW10vYE2G9EauE11B4hkWzNMh1SuojsbWDZ2Kl8",
@@ -46,28 +41,25 @@ export const App = () => {
             orientation: "landscape",
           },
         });
-        setPhotos((prevPhotos) => ({
-          ...prevPhotos,
-          items: [...prevPhotos.items, ...response.data],
-        }));
+        // setPhotos(response.data);
+        setPhotos((prevPhotos) => [...prevPhotos, ...response.data]);
       } catch (error) {
-        setPhotos((prevPhotos) => ({ ...prevPhotos, error: true }));
+        setError(error.message);
       } finally {
-        setPhotos((prevPhotos) => ({ ...prevPhotos, loading: false }));
+        setLoading(false);
       }
     }
-      fetchData();
+    fetchData();
   }, [query, page]);
   
 
   return (
     <>
       <SearchBox onSearch={searchPhotos} />
-      {photos.loading && <b>Loading photos, please wait...</b>}
-      {photos.error && <b>Oops! There was error, please try again!</b>}
-      {photos.items.length > 0 && <ImageGallery photos={photos.items} />}
-      {/* {photos.items.length > 0 && <LoadMoreBtn loadMore={loadMore} />} */}
-      <LoadMoreBtn loadMore={loadMore} />
+      {/* {loading && <Loader />} */}
+      {/* {error && <Loader error={error.message} />} */}
+      <ImageGallery photos={photos} />
+      {photos.length > 0 && <LoadMoreBtn loadMore={loadMore} />}
     </>
   );
 };
