@@ -39,14 +39,14 @@ export const App = () => {
         setPhotos((prevPhotos) => ({ ...prevPhotos, loading: true, error: false }));
         const response = await axios.get(`https://api.unsplash.com/photos/`, {
           params: {
-            client_id: "oHSngIMzDXZCbwhqwUHSZli2mFEs0n8X8x8LNOmGO_M",
+            // client_id: "oHSngIMzDXZCbwhqwUHSZli2mFEs0n8X8x8LNOmGO_M",
+            client_id: "GjwKFQOqKftQmeZ6ydrvUZ_gTeXWQf7fBqrIxA-HNow",
             query: query,
             per_page: 12,
             page: page,
             orientation: "landscape",
           },
         });
-  
         setPhotos((prevPhotos) => ({
           ...prevPhotos,
           items: [...prevPhotos.items, ...response.data],
@@ -57,8 +57,7 @@ export const App = () => {
         setPhotos((prevPhotos) => ({ ...prevPhotos, loading: false }));
       }
     }
-  
-    fetchData();
+      fetchData();
   }, [query, page]);
   
 
