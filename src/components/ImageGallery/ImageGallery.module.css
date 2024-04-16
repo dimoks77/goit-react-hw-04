@@ -1,14 +1,12 @@
 .gallery {
-    margin-top: 100px;
+    margin-top: 90px;
+ 
 }
 
 .list {
     display: grid;
     list-style: none;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 20px;
 }
 
-.photo {
-
-}
