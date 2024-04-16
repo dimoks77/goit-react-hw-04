@@ -39,8 +39,7 @@ export const App = () => {
         setPhotos((prevPhotos) => ({ ...prevPhotos, loading: true, error: false }));
         const response = await axios.get(`https://api.unsplash.com/photos/`, {
           params: {
-            // client_id: "oHSngIMzDXZCbwhqwUHSZli2mFEs0n8X8x8LNOmGO_M",
-            client_id: "GjwKFQOqKftQmeZ6ydrvUZ_gTeXWQf7fBqrIxA-HNow",
+            client_id: "4Ha1lW10vYE2G9EauE11B4hkWzNMh1SuojsbWDZ2Kl8",
             query: query,
             per_page: 12,
             page: page,
