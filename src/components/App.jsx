@@ -67,7 +67,8 @@ export const App = () => {
       {photos.loading && <b>Loading photos, please wait...</b>}
       {photos.error && <b>Oops! There was error, please try again!</b>}
       {photos.items.length > 0 && <ImageGallery photos={photos.items} />}
-      {photos.items.length > 0 && <LoadMoreBtn loadMore={loadMore} />}
+      {/* {photos.items.length > 0 && <LoadMoreBtn loadMore={loadMore} />} */}
+      <LoadMoreBtn loadMore={loadMore} />
     </>
   );
 };
