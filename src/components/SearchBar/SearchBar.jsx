@@ -1,36 +1,33 @@
 import css from "./SearchBar.module.css";
 import { IoIosSearch } from "react-icons/io";
-import { Field, Form, Formik, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import toast from "react-hot-toast";
 
 export const SearchBox = ({ onSearch }) => {
-  const SignupSchema = Yup.object().shape({
-    query: Yup.string().required("Enter text for search!"),
-  });
-
-  const handleSubmit = (values, { resetForm }) => {
-    onSearch(values.query);
-    resetForm();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (event.target.elements.query.value.trim( )=== '') {
+        toast.error("Enter text for search!");
+        return;  
+    }
+    onSearch(event.target.elements.query.value);
+    event.target.reset();
   };
 
   return (
     <header className={css.header}>
-      <Formik initialValues={{ query: "" }} validationSchema={SignupSchema} onSubmit={handleSubmit}>
-        <Form className={css.form}>
-          <Field
-            className={css.input}
-            autoComplete="off"
-            autoFocus
-            type="text"
-            name="query"
-            placeholder="Search images with photos"
-          />
-          <ErrorMessage name="query" render={(msg) => <div className={css.error}>{msg}</div>} />
-          <button type="submit" className={css.btn}>
-            <IoIosSearch className={css.icon} />
-          </button>
-        </Form>
-      </Formik>
+      <form className={css.form} onSubmit={handleSubmit}>
+        <input
+          className={css.input}
+          autoComplete="off"
+          autoFocus
+          type="text"
+          name="query"
+          placeholder="Search images with photos"
+        />
+        <button type="submit" className={css.btn}>
+          <IoIosSearch className={css.icon} />
+        </button>
+      </form>
     </header>
   );
 };
