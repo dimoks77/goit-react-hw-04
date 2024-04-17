@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 export const SearchBox = ({ onSearch }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (event.target.elements.query.value.trim( )=== '') {
+    if (event.target.elements.query.value.trim() === '') {
         toast.error("Enter text for search!");
         return;  
     }
-    onSearch(event.target.elements.query.value);
+    onSearch(event.target.elements.query.value.trim());
     event.target.reset();
   };
 
