@@ -4,7 +4,8 @@ import { Field, Form, Formik } from "formik";
 import toast from 'react-hot-toast';
 
 export const SearchBox = ({ onSearch }) => {
-    const handleSubmit = (values ) => {
+    const handleSubmit = (evt, values) => {
+        evt.preventDefault();
         if (!values.query) {
             toast.error("Please enter text");
         } else {
