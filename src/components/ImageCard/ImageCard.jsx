@@ -6,8 +6,8 @@ export const ImageCard = ({ photo, openModal }) => {
   };
 
   return (
-    <li key={photo.id} className={css.photo} onClick={handleImageClick}>
-      <img src={photo.urls.small} className={css.img} />
+    <li key={photo.id} className={css.photo}>
+      <img src={photo.urls.small} className={css.img} alt={photo.alt_description} onClick={handleImageClick} />
     </li>
   );
 };

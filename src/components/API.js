@@ -1,5 +1,4 @@
 import axios from 'axios';
-import toast from 'react-hot-toast';
 
 export async function fetchData(query, page, setPhotos, setLoading, setError) {
     try {
@@ -16,7 +15,6 @@ export async function fetchData(query, page, setPhotos, setLoading, setError) {
         setPhotos((prevPhotos) => [...prevPhotos, ...response.data.results]);
     } catch (error) {
         setError(error.message);
-        toast.error(error.message);
     } finally {
         setLoading(false);
     }

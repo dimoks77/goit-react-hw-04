@@ -4,13 +4,13 @@ import { Field, Form, Formik } from "formik";
 import toast from 'react-hot-toast';
 
 export const SearchBox = ({ onSearch }) => {
-    const handleSubmit = (evt, values) => {
-        evt.preventDefault();
+    const handleSubmit = (values, { resetForm }) => {
         if (!values.query) {
             toast.error("Please enter text");
+            resetForm();
         } else {
             onSearch(values.query);
-            // resetForm();
+            resetForm();
         }
     };
 
@@ -24,11 +24,12 @@ export const SearchBox = ({ onSearch }) => {
                         autoFocus
                         type="text"
                         name="query"
-                        placeholder="search images with photos"
+                        placeholder="Search images with photos"
                     />
                     <button type="submit" className={css.btn}>
                         <IoIosSearch className={css.icon} />
                     </button>
+
                 </Form>
             </Formik>
         </header>
@@ -36,3 +37,5 @@ export const SearchBox = ({ onSearch }) => {
 };
 
 export default SearchBox;
+
+

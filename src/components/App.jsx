@@ -6,6 +6,7 @@ import { SearchBox } from './SearchBar/SearchBar';
 import ImageModal from './ImageModal/ImageModal';
 import { Toaster } from 'react-hot-toast';
 import { fetchData } from './API';
+import { ErrorMessage } from 'formik';
 
 export const App = () => {
   const [query, setQuery] = useState('');
@@ -19,8 +20,6 @@ export const App = () => {
   const searchPhotos = async (newQuery) => {
     setQuery(newQuery);
     setPage(1);
-    setLoading(false);
-    setError('');
     setPhotos([]);
   };
 
@@ -46,18 +45,29 @@ export const App = () => {
   };
 
   useEffect(() => {
-    if (query === '') {
-      return;
-    }
-    // searchPhotos(query);
-    fetchData(query, page, setPhotos, setLoading, setError);
+    const fetchDataAndHandleLoading = async () => {
+      if (query === '') {
+        return;
+      }
+
+      setLoading(true); 
+      try {
+        await fetchData(query, page, setPhotos, setLoading, setError);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false); 
+      }
+    };
+
+    fetchDataAndHandleLoading();
   }, [query, page]);
 
   return (
     <>
       <SearchBox onSearch={searchPhotos} />
       {loading && <Loader />}
-      {error && <Loader error={error.message} />}
+      {error && <ErrorMessage error={error.message} />}
       {photos.length > 0 && <ImageGallery photos={photos} openModal={openModal} />}
       {photos.length > 0 && <LoadMoreBtn loadMore={loadMore} />}
       <ImageModal isOpen={modalIsOpen} onRequestClose={closeModal} selectedPhoto={selectedPhoto} />
