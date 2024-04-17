@@ -1,8 +1,15 @@
+import { useEffect } from 'react';
 import toast from "react-hot-toast";
 
-export const ErrorMessage = ( error ) => {
-    
-    toast.error(error);
-  };
-  
-  export default ErrorMessage;
+const ErrorMessage = ({ error, clearError }) => {
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+            clearError();
+        }
+    }, [error, clearError]);
+
+    return null;
+};
+
+export default ErrorMessage;
