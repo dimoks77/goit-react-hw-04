@@ -53,8 +53,3 @@ header {
   .btn {
     visibility: hidden;
   }
-
-  .error {
-    color: white;
-    font-weight: bold;
-  }

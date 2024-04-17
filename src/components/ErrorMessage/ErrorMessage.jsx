@@ -1,15 +1,11 @@
-import { useEffect } from 'react';
-import toast from "react-hot-toast";
+import css from "./ErrorMessage.module.css";
 
-const ErrorMessage = ({ error, clearError }) => {
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-            clearError();
-        }
-    }, [error, clearError]);
-
-    return null;
+export const ErrorMessage = () => {
+    return (
+    <div className={css.overlay}>
+      <div className={css.error}>Error! API Request Failed!</div>
+    </div>
+    )
 };
 
 export default ErrorMessage;
